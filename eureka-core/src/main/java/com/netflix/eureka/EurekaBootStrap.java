@@ -167,7 +167,7 @@ public class EurekaBootStrap implements ServletContextListener {
         } else {
             applicationInfoManager = eurekaClient.getApplicationInfoManager();
         }
-        //第三步 处理注册相关的事情
+        //第四步 处理注册相关的事情
         PeerAwareInstanceRegistry registry;
         if (isAws(applicationInfoManager.getInfo())) {
             registry = new AwsInstanceRegistry(
@@ -186,7 +186,7 @@ public class EurekaBootStrap implements ServletContextListener {
                     eurekaClient
             );
         }
-        //第四步，处理PeerEurekaNodes相关节点
+        //第五步，处理PeerEurekaNodes相关节点
         PeerEurekaNodes peerEurekaNodes = getPeerEurekaNodes(
                 registry,
                 eurekaServerConfig,
@@ -194,7 +194,7 @@ public class EurekaBootStrap implements ServletContextListener {
                 serverCodecs,
                 applicationInfoManager
         );
-        //第五步 完成eureka server上下文构建及初始化
+        //第六步 完成eureka server上下文构建及初始化
         serverContext = new DefaultEurekaServerContext(
                 eurekaServerConfig,
                 serverCodecs,
@@ -209,11 +209,11 @@ public class EurekaBootStrap implements ServletContextListener {
         logger.info("Initialized server context");
 
         // Copy registry from neighboring eureka node
-        //第六步 处理一点善后的事情，从相邻的eureka节点拷贝注册信息
+        //第七步 处理一点善后的事情，从相邻的eureka节点拷贝注册信息
         int registryCount = registry.syncUp();
         registry.openForTraffic(applicationInfoManager, registryCount);
 
-        //第七部 处理监控信息
+        //第八步 处理监控信息
         // Register all monitoring statistics.
         EurekaMonitors.registerAllStats();
     }
