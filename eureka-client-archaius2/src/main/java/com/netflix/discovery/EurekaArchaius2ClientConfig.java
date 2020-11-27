@@ -1,9 +1,5 @@
 package com.netflix.discovery;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import com.google.inject.Inject;
 import com.netflix.appinfo.EurekaAccept;
 import com.netflix.archaius.api.Config;
@@ -12,6 +8,9 @@ import com.netflix.discovery.internal.util.InternalPrefixedConfig;
 import com.netflix.discovery.shared.transport.EurekaTransportConfig;
 
 import javax.inject.Singleton;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import static com.netflix.discovery.PropertyBasedClientConfigConstants.*;
 
